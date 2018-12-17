@@ -19,7 +19,7 @@ def string_to_date(dateString):
     return datetime.strptime(dateString, "%Y-%m-%d")
 
 data = {
-    'tra': pd.read_csv('C:/Users/王心妙/Desktop/餐廳人潮預測/air_visit_data.csv',engine='python')
+    'tra': pd.read_csv('../data/air_visit_data.csv')
 }
 
 data['tra']['year'] = data['tra']['visit_date'].apply(get_year)
