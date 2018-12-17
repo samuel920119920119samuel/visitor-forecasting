@@ -1,3 +1,4 @@
+
 import numpy as np
 import pandas as pd
 from sklearn import preprocessing
@@ -48,9 +49,6 @@ stores = pd.merge(stores, data['storeVSstation'], how='left', on=['air_store_id'
 
 stores = stores.sort_values(by = ['air_store_id']).reset_index(drop=True)
 
-stores['precipitation'] = [0]*len(stores)
-stores['avg_temperature'] = [0]*len(stores)
-stores['hours_sunlight'] = [0]*len(stores)
 
 stations = pd.DataFrame()
 for i in files:
@@ -59,9 +57,9 @@ for i in files:
   data[name]['station_id'] = [name]*len(data[name])
   stations = pd.concat([stations, data[name]], axis=0, ignore_index=True).reset_index(drop=True)
 
+stations.head()
 
-
-storesVSstations = pd.merge(stores, stations, how='left', on=['station_id', 'calendar_date'])
+storesVSstations = pd.merge(stores, stations, how='left', on=['station_id', 'calendar_date']) 
 # storesVSstations.columns = ['air_store_id', 'cal_date', 'station_id', 'air_store_id', 'calendar_date', 'station_id', 'avg_temperature',
 #        'high_temperature', 'low_temperature', 'precipitation',
 #        'hours_sunlight', 'solar_radiation', 'deepest_snowfall',
@@ -69,6 +67,13 @@ storesVSstations = pd.merge(stores, stations, how='left', on=['station_id', 'cal
 #        'avg_local_pressure', 'avg_humidity', 'avg_sea_pressure',
 #        'cloud_cover']
 
+
+
+storesVSstations[['air_store_id', 'calendar_date', 'avg_humidity', 'avg_temperature', 'precipitation', 'hours_sunlight', 'solar_radiation', 'total_snowfall']].head()
+
+storesVSstations = storesVSstations[['air_store_id', 'calendar_date', 'avg_humidity', 'avg_temperature', 'precipitation', 'hours_sunlight', 'solar_radiation', 'total_snowfall']]
+
+storesVSstations = storesVSstations.rename(columns={"calendar_date": "visit_date"})
 
 
 storesVSstations.to_pickle('../data/weather.pkl')
