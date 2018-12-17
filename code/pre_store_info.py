@@ -9,4 +9,4 @@ lbl = preprocessing.LabelEncoder()
 data['si']['air_genre_name'] = lbl.fit_transform(data['si']['air_genre_name'])
 data['si']['air_area_name'] = lbl.fit_transform(data['si']['air_area_name'])
 
-data['si'].to_pickle("store_info.pkl")
+data['si'].to_pickle("../features/store_info.pkl")
