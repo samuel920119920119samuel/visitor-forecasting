@@ -27,7 +27,7 @@ air_store_reserve = air_reserve.groupby(['store_id', 'visit_date']).apply(store_
 hpg_reserve['diff_date'] = hpg_reserve['visit_date'] - hpg_reserve['reserve_date']
 hpg_store_reserve = hpg_reserve.groupby(['store_id', 'visit_date']).apply(store_reserve_agg, 'hpg')
 
-result = air_store_reserve.join(hpg_store_reserve, how='outer').fillna(0).reset_index()
+result = air_store_reserve.join(hpg_store_reserve, how='outer').fillna(-1).reset_index()
 # print(result.head())
 result.to_pickle('../features/reserve.pkl')
 # features: store_id, visit_date, air_reserve_visitors, air_reserve_count, air_diff_date_mean, hpg_reserve_visitors, hpg_reserve_count, hpg_diff_date_mean
