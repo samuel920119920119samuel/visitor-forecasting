@@ -30,6 +30,4 @@ data['tra']['visit_date'] = data['tra']['visit_date'].apply(string_to_date)
 
 data['tra'].to_pickle('visit_data_p2.pkl',protocol=2)
 
-# f = pd.read_pickle('visit_data_p2.pkl')
-# print(f.head())
 
