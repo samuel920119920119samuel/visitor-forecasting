@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from datetime import datetime
+import pickle
 
 def get_day_of_week(dateString):
     return (datetime.strptime(dateString, "%Y-%m-%d").weekday())
@@ -18,7 +19,7 @@ def string_to_date(dateString):
     return datetime.strptime(dateString, "%Y-%m-%d")
 
 data = {
-    'tra': pd.read_csv('../data/air_visit_data.csv')
+    'tra': pd.read_csv('C:/Users/王心妙/Desktop/餐廳人潮預測/air_visit_data.csv',engine='python')
 }
 
 data['tra']['year'] = data['tra']['visit_date'].apply(get_year)
@@ -27,4 +28,8 @@ data['tra']['day_of_week'] = data['tra']['visit_date'].apply(get_day_of_week)
 data['tra']['week_of_year'] = data['tra']['visit_date'].apply(get_week_of_year)
 data['tra']['visit_date'] = data['tra']['visit_date'].apply(string_to_date)
 
-data['tra'].to_pickle('visit_data.pkl')
+data['tra'].to_pickle('visit_data_p2.pkl',protocol=2)
+
+# f = pd.read_pickle('visit_data_p2.pkl')
+# print(f.head())
+
