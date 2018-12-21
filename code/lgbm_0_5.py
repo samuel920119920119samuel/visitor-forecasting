@@ -43,6 +43,14 @@ tmp = data['train'].groupby(
 data['train'] = pd.merge(data['train'], tmp, how='left', on=['store_id', 'day_of_week'])
 data['test'] = pd.merge(data['test'], tmp, how='left', on=['store_id', 'day_of_week'])
 
+tmp = data['train'].groupby(
+    ['store_id', 'day_of_week'],
+    as_index=False)['visitors'].count().rename(columns={
+        'visitors': 'count_observations'
+    })
+data['train'] = pd.merge(data['train'], tmp, how='left', on=['store_id', 'day_of_week'])
+data['test'] = pd.merge(data['test'], tmp, how='left', on=['store_id', 'day_of_week'])
+
 x_train = data['train'].drop(['visitors','store_id','visit_date'], axis=1)
 y_train = np.log1p(data['train']['visitors'].values)
 
