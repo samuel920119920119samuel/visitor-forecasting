@@ -42,10 +42,10 @@ x_test = x_test[x_train.columns]
 # parameters = {
 #               'num_leaves' : [40, 60, 80],
 #               'max_depth': [10, 15, 20, 25, 35],
-#               'learning_rate': [0.005, 0.008, 0.01,0.02],
+#               'learning_rate': [0.005, 0.008, 0.01, 0.02],
 #               'feature_fraction': [0.6, 0.8],
 #               'bagging_fraction': [0.6, 0.8],
-#               'bagging_freq': [2, 4]
+#               'bagging_freq': [2, 4],
 #               'lambda_l2': [0, 0.0001, 0.01, 0.1, 0.05, 0.5, 10],
 #               'metric' : ['rmse']
 # }
@@ -65,7 +65,7 @@ gbm = lgb.LGBMRegressor(
     # num_threads = 4,
     # max_bin = 400,
     # min_hessian = 1,
-    # verbose = -1
+    # verbose = -1,
     n_estimators=10000
     )
 
